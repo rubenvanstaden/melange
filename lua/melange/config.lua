@@ -1,9 +1,7 @@
-local vim_config = require('onedark.config.vim_config')
-local default_config = require('onedark.config.default')
+local vim_config = require('melange.config.vim_config')
+local default_config = require('melange.config.default')
 
 vim = vim or { g = {} }
----@class od.Config
----@field schema od.ConfigSchema
 local config = {}
 
 ---Accessing global config using vim.g.onedark_* will help in autocompletion.

@@ -1,5 +1,5 @@
-local hsluv = require('onedark.hsluv')
-local types = require('onedark.types')
+local hsluv = require('melange.hsluv')
+local types = require('melange.types')
 
 ---@class od.Util
 local util = {}
@@ -150,19 +150,19 @@ end
 
 --- Delete the autocmds when the theme changes to something else
 util.on_colorscheme = function()
-  if vim.g.colors_name ~= 'onedark' then
-    vim.cmd('autocmd! onedark')
-    vim.cmd('augroup! onedark')
+  if vim.g.colors_name ~= 'melange' then
+    vim.cmd('autocmd! melange')
+    vim.cmd('augroup! melange')
   end
 end
 
 ---@param cfg od.ConfigSchema
 util.autocmds = function(cfg)
-  vim.cmd('augroup onedark')
+  vim.cmd('augroup melange')
   vim.cmd('autocmd!')
-  vim.cmd('autocmd ColorScheme * lua require("onedark.util").on_colorscheme()')
+  vim.cmd('autocmd ColorScheme * lua require("melange.util").on_colorscheme()')
   if cfg.dev then
-    vim.cmd('autocmd BufWritePost */lua/onedark/** nested colorscheme onedark')
+    vim.cmd('autocmd BufWritePost */lua/melange/** nested colorscheme melange')
   end
   for _, sidebar in ipairs(cfg.sidebars) do
     if sidebar == 'terminal' then
@@ -231,7 +231,7 @@ util.load = function(hi)
   end
 
   vim.o.termguicolors = true
-  vim.g.colors_name = 'onedark'
+  vim.g.colors_name = 'melange'
 
   -- load base theme
   util.syntax(hi.base)
@@ -262,7 +262,7 @@ function util.color_overrides(colors, oride_colors)
       if not colors[key] then
         error(err_msg)
       end
-      -- Patch: https://github.com/ful1e5/onedark.nvim/issues/6
+      -- Patch: https://github.com/ful1e5/melange.nvim/issues/6
       if type(colors[key]) == 'table' then
         util.color_overrides(colors[key], value)
       else

@@ -1,20 +1,16 @@
-local util = require('onedark.util')
-local colors = require('onedark.colors')
+local util = require('melange.util')
+local colors = require('melange.colors')
 
 local theme = {}
 
----@param cfg od.ConfigSchema
----@return od.Highlights
 theme.setup = function(cfg)
-  cfg = cfg or require('onedark.config').schema
+  cfg = cfg or require('melange.config').schema
 
-  ---@class od.Highlights
   local hi = {}
   hi.config = cfg
   hi.colors = colors.setup(cfg)
   local c = hi.colors
 
-  ---@class od.Highlights.Base
   hi.base = {
     Comment = { fg = c.fg_dark, style = cfg.comment_style }, -- any comment
     ColorColumn = { bg = c.bg_visual }, -- used for the columns set with 'colorcolumn'
