@@ -1,6 +1,5 @@
 local types = require('onedark.types')
 
----@return od.ConfigSchema
 return {
   colors = {},
   comment_style = types.od.HighlightStyle.Italic,
